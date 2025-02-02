@@ -62,7 +62,7 @@ const Header = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
     >
-    <div className="flex justify-between items-center w-full absolute top-4 px-4 z-50">
+    <div className="flex flex-row justify-between items-center w-full max-w-[450px] absolute top-4 px-4 z-50">
       {/* Tombol kiri */}
      
         <Button
@@ -72,21 +72,21 @@ const Header = () => {
           >
             <LogOut/>
         </Button>
-        <div className='hidden dark:block'>
-          <Image
-            src='/web-02.png'
-            alt='logo'
-            width={120}
-            height={50}
-          />
-        </div>
-        <div className='dark:hidden block'>
-          <Image
-            src='/web-03.png'
-            alt='logo'
-            width={120}
-            height={50}
-          />
+        <div className='icon'>
+            <Image
+              className='hidden dark:block'
+              src='/web-02.png'
+              alt='logo'
+              width={120}
+              height={50}
+            />
+            <Image
+              className='dark:hidden block'
+              src='/web-03.png'
+              alt='logo'
+              width={120}
+              height={50}
+            />
         </div>
         <DarkThemeButton />
       

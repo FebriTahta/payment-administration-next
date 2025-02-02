@@ -64,17 +64,21 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      
        <body
         className={`${geistSans.variable} ${geistMono.variable} w-full min-h-screen relative overflow-hidden flex items-center justify-center antialiased`}
       >
+        
          <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
-          <Starfall/>
           <Header />
+          
+          <Starfall/>
+          
           <Toaster />
           <PaymentDetailProvider>
             <PaymentOptionProvider>
