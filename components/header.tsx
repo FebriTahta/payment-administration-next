@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { DarkThemeButton } from './button/dark-theme-button';
 import { 
-  // LogIn, 
   LogOut 
 } from 'lucide-react';
 import { Button } from './ui/button';
@@ -12,7 +11,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { useCallback, useEffect } from 'react';
 import { checkTokenActive } from '@/lib/jwt';
-// import Image from 'next/image';
+import Image from 'next/image';
 
 const Header = () => {
   const router = useRouter();
@@ -73,7 +72,7 @@ const Header = () => {
           >
             <LogOut/>
         </Button>
-        {/* <div className='hidden dark:block'>
+        <div className='hidden dark:block'>
           <Image
             src='/web-02.png'
             alt='logo'
@@ -88,7 +87,7 @@ const Header = () => {
             width={120}
             height={50}
           />
-        </div> */}
+        </div>
         <DarkThemeButton />
       
     </div>
