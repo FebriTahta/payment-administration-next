@@ -14,6 +14,13 @@ pnpm dev
 bun dev
 ```
 
+this is my first next js project that implemented in the real case.
+writing this code contains a lot of things I don't know that I know but I don't have time to correct them.
+
+Maybe someday I can justify the stupidity of the syntax I wrote.
+
+Thank You
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
