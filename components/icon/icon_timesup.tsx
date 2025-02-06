@@ -7,7 +7,7 @@ const IconTimesUp = () => {
         play
         loop
         animationData={timesup}
-        style={{ height: "200px", width: "200px" }}
+        style={{ height: "100px", width: "100px" }}
     />
   )
 }

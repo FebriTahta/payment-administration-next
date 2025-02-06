@@ -7,7 +7,7 @@ const IconPaymentSuccess = () => {
         play
         loop
         animationData={payment_success}
-        style={{ height: "120px", width: "120px" }}
+        style={{ height: "100px", width: "100px" }}
     />
   )
 }

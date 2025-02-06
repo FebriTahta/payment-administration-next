@@ -7,7 +7,7 @@ const IconError = () => {
         play
         loop
         animationData={icon_error}
-        style={{ height: "200px", width: "200px" }}
+        style={{ height: "100px", width: "100px" }}
     />
   )
 }

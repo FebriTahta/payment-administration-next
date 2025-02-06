@@ -33,7 +33,7 @@ const Countdown: React.FC<CountdownProps> = ({ expiryTime }) => {
   return (
     <div className="text-center">
       <p className="text-2xl font-bold">{timeLeft}</p>
-      <p className="text-[11px]">Lakukan pembayaran sebelum waktu selesai</p>
+      <p className="text-[9px]">Lakukan pembayaran sebelum waktu selesai</p>
     </div>
   )
 }

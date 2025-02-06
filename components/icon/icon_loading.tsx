@@ -7,7 +7,7 @@ const IconLoading = () => {
         play
         loop
         animationData={loading}
-        style={{ height: "200px", width: "200px" }}
+        style={{ height: "100px", width: "100px" }}
     />
   )
 }

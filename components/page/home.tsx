@@ -241,8 +241,8 @@ const Home = () => {
         </Card>
         {/* card payment component */}
         <Card className="z-20 pr-7 pl-7 mt-[-40px] w-full h-screen rounded-[30px] dark:bg-slate-900 dark:bg-opacity-70">
-          <CardHeader>
-            <CardTitle className="mt-10">Komponen Pembayaran</CardTitle>
+          <CardHeader className='mt-7 mb-[-7px]'>
+            <CardTitle className="text-[12px]">Komponen Pembayaran</CardTitle>
           </CardHeader>
 
           <CardContent className='pb-5'>
@@ -251,7 +251,7 @@ const Home = () => {
               {main_menu1.map((item, index)=> (
                 <div 
                   key={index}
-                  className="flex flex-col hover:scale-125 h-14 w-14 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
+                  className="flex flex-col hover:scale-125 h-12 w-12 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
                   <div className="flex icon">
                     <Link href={{
                         pathname: '/payment-component-list',
@@ -264,19 +264,19 @@ const Home = () => {
                         },
                       }}>
                       {
-                        <item.menu_icon className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+                        <item.menu_icon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
                       }
                     </Link>
                   </div>
                   <div className="flex text">
-                    <p className="text-[10px]">{item.menu_text}</p>
+                    <p className="text-[9px]">{item.menu_text}</p>
                   </div>
                 </div>
               ))}
             </div>
             <div className="menu flex justify-between mt-4">
               {main_menu2.map((item, index)=> (
-                <div key={index} className="flex flex-col hover:scale-125 h-14 w-14 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
+                <div key={index} className="flex flex-col hover:scale-125 h-12 w-12 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
                   <div className="flex icon">
                     {item.komponen !== 'search' ? 
                       <Link href={{
@@ -290,7 +290,7 @@ const Home = () => {
                           },
                         }}>
                         {
-                          <item.menu_icon className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+                          <item.menu_icon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
                         }
                       </Link>
                     : 
@@ -304,26 +304,24 @@ const Home = () => {
                           }
                       >
                       {
-                        <item.menu_icon className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+                        <item.menu_icon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
                       }
                       </Link>
                     }
                     
                   </div>
                   <div className="flex text">
-                    <p className="text-[10px]">{item.menu_text}</p>
+                    <p className="text-[9px]">{item.menu_text}</p>
                   </div>
                 </div>
               ))}
             </div>
           </CardContent>
 
-          <CardHeader className='mt-0 pt-0 pb-4'>
+          <CardHeader className='mt-[-5px] pt-[0px] pb-3' onClick={()=>setShowNoteBox(true)}>
             <div className="flex flex-col items-end">
-              <p className="flex text-xs">Pembayaran bulan ini</p>
-              <p className='flex text-xs cursor-pointer gap-1'
-                onClick={()=>setShowNoteBox(true)}
-              >
+              <p className="flex text-[9px]">Pembayaran bulan ini</p>
+              <p className='flex text-[9px] cursor-pointer gap-1'>
                  catatan<ChartNoAxesGantt className='size-4'/>
               </p>
              </div>
@@ -355,8 +353,7 @@ const Home = () => {
                   error 
                   ? error 
                   : <div className='text-center leading-1'>
-                    <p className="text-red-500 text-[10px] mt-4">Belum ada pembayaran yang dilakukan </p>
-                    <p className="text-red-500 text-[10px] mt-1">(Bulan Ini)</p>
+                    <p className="text-red-500 text-[9px] mt-2">Belum ada pembayaran bulan ini </p>
                   </div>
                 )
                 

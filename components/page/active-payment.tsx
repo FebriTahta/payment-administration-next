@@ -16,7 +16,7 @@ import IconLoading from "../icon/icon_loading";
 import { getFcmToken, onMessageListener, requestNotificationPermission } from "@/utils/fcm-notification";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Icon404 from "../icon/icon_404";
+// import Icon404 from "../icon/icon_404";
 import { createFcmWebToken } from "@/api/create-fcm-web-token";
 import { cancelTransaction } from "@/api/cancel-transaction";
 
@@ -118,13 +118,15 @@ const ActivePayment = () => {
     window.location.href = url; // Open the GoPay app link
   };
 
-  const handleCekStatus = (order_id:string) => {
+  const handleCekStatus = async (order_id: string) => {
     setOnClickLoadingStatus(true);
-    setTimeout(() => {
-      setOnClickLoadingStatus(false);
-      router.push(`/status-payment/${order_id}`);
-    }, 500);
-  }
+    
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    
+    setOnClickLoadingStatus(false);
+    router.push(`/status-payment/${order_id}`);
+  };
+  
 
   const handleCancel = async (order_id:string) => {
     setOnClickLoadingCancel(true);
@@ -150,17 +152,14 @@ const ActivePayment = () => {
                   transition={{ duration: 0.3, delay: 0.1, ease: 'easeOut' }}
               >
                   <Card className="mt-[-20vh] shadow-md dark:bg-opacity-70">
-                      <CardHeader className="flex items-center border-b-2 pb-3 dark:bg-slate-800 rounded-t-lg">
-                          {
-                           loading ? (<IconPaymentLoadingDogy />) : apiActivePayment ? (<IconPaymentLoadingDogy />) : (<Icon404/>) 
-                          }
-                          
+                      <div className="flex flex-col items-center border-b-2 pb-3 dark:bg-slate-800 rounded-t-lg">
+                          <IconPaymentLoadingDogy/>
                           <div className="text_header flex flex-col items-center text-center leading-0">
-                              <p className="font-bold text-sm">{!apiActivePayment ? "Ingin Melakukan Pembayaran ?" : "Menunggu Pembayaran"}</p>
-                              <small className="text-xs">{!apiActivePayment ? "Sayangnya tidak ada pembayaran aktif" : "Pembayaran Aktif Siap Dibayar"}</small>
+                              <p className="font-bold text-[10px]">{!apiActivePayment ? "Ingin Melakukan Pembayaran ?" : "Menunggu Pembayaran"}</p>
+                              <small className="text-[9px]">{!apiActivePayment ? "Pilih komponen pembayaran terlebih dahulu" : "Pembayaran Aktif Siap Dibayar"}</small>
                           </div>
-                      </CardHeader>
-                      <CardHeader className="flex items-center keterangan leading-3 p-4 border-b-2">
+                      </div>
+                      <CardHeader className="flex items-center keterangan leading-3 p-3 border-b-2">
                       {
                         loading 
                         ? (<CountdownSkeleton />) 
@@ -168,11 +167,10 @@ const ActivePayment = () => {
                         ? (<Countdown expiryTime={apiActivePayment.data.expiry_time} />)
                         : (<IconLoading />)
                       }
-
                       </CardHeader>
                       {
                         apiActivePayment ? (
-                          <CardHeader className="list p-4 border-b-2">
+                          <CardHeader className="list p-3 border-b-2">
                             {
                               loading || error || apiActivePayment?.status !== 200
                               ? (
@@ -180,19 +178,19 @@ const ActivePayment = () => {
                               )
                               : (
                                 <div>
-                                  <div className="flex justify-between text-xs">
+                                  <div className="flex justify-between text-[10px]">
                                       <p>Kode Transaksi</p>
                                       <p>{apiActivePayment.data.kd_trans}</p>
                                   </div>
-                                  <div className="flex justify-between text-xs">
+                                  <div className="flex justify-between text-[10px]">
                                       <p>Order Id</p>
                                       <p>{apiActivePayment.data.order_id}</p>
                                   </div>
-                                  <div className="flex justify-between text-xs">
+                                  <div className="flex justify-between text-[10px]">
                                       <p>Nominal</p>
                                       <p>Rp {Number(apiActivePayment.data.gross_amount).toLocaleString("id-ID", { minimumFractionDigits: 0 })}</p>
                                   </div>
-                                  <div className="flex justify-between text-xs">
+                                  <div className="flex justify-between text-[10px]">
                                     <p>
                                       {
                                         apiActivePayment.data.payment_type === 'bank_transfer' ? 'Bank Transfer' : apiActivePayment.data.payment_type
@@ -206,7 +204,7 @@ const ActivePayment = () => {
                                       }
                                     </p>
                                   </div>
-                                  <div className="items-center leading-3 text-xs mt-5">
+                                  <div className="items-center leading-3 text-[10px] mt-5">
                                     {
                                       apiActivePayment.data.payment_type === 'bank_transfer'
                                       ? (
@@ -225,13 +223,12 @@ const ActivePayment = () => {
                                     {
                                       apiActivePayment.data.actions?.map((item, index)=>(
                                         item.name === 'generate-qr-code' || item.name === 'deeplink-redirect' ? 
-                                          <div className="flex justify-between" key={index}>
-                                            <p></p>
-                                            <div className="flex items-center gap-2">
+                                          <div className="flex justify-end" key={index}>
+                                            <div className="flex items-center gap-1">
                                               {
                                                 item.name === 'generate-qr-code' 
                                                 ? (
-                                                  <p className="cursor-pointer"
+                                                  <p className="cursor-pointer text-[9px]"
                                                     onClick={() => {
                                                       setShowQrDialog(true)
                                                       setQrCodeUrl(item.url);
@@ -240,7 +237,7 @@ const ActivePayment = () => {
                                                 ) : 
                                                 item.name === 'deeplink-redirect' 
                                                 ? (
-                                                  <p className="cursor-pointer"
+                                                  <p className="cursor-pointer text-[9px]"
                                                     onClick={() => handleOpenApp(item.url)}
                                                   >BUKA APLIKASI GOPAY</p>
                                                 ) : null
@@ -248,7 +245,7 @@ const ActivePayment = () => {
                                               {
                                                 item.name === 'generate-qr-code' 
                                                 ? <QrCode
-                                                    className="cursor-pointer w-4"
+                                                    className="cursor-pointer w-3"
                                                     onClick={() => {
                                                       setShowQrDialog(true)
                                                       setQrCodeUrl(item.url);
@@ -257,7 +254,7 @@ const ActivePayment = () => {
                                                 : 
                                                 item.name === 'deeplink-redirect' 
                                                 ? <Smartphone
-                                                    className="cursor-pointer w-4"
+                                                    className="cursor-pointer w-3"
                                                     onClick={() => handleOpenApp(item.url)}
                                                   /> 
                                                 : null
@@ -277,21 +274,21 @@ const ActivePayment = () => {
                         ) : null
                       }
                       
-                      <CardFooter className={`p-4 dark:bg-slate-800 border-b-2 ${!apiActivePayment ? 'rounded-b-lg': null}`}>
-                        <div className="flex flex-col justify-start text-xs gap-2">
+                      <CardFooter className={`p-3 dark:bg-slate-800 border-b-2 ${!apiActivePayment ? 'rounded-b-lg': null}`}>
+                        <div className="flex flex-col justify-start text-[10px] gap-2">
                             <p>STATUS : </p>
                             <div 
-                              className={`font-thi ${
+                              className={`font-thin text-[10px] ${
                                 statusTransaction === 'pending' 
                                 || statusTransaction === 'accept' 
                                 || statusTransaction === 'settlement'
-                                  ? 'text-green-500'
-                                  : 'text-red-500'
+                                  ? 'text-green-900'
+                                  : 'text-red-900'
                               }`}
                             >{!apiActivePayment 
                               ? (
                                 <div className="flex flex-col">
-                                  <p>Pembayaran aktif tidak ditemukan</p>
+                                  <p>Belum ada pembayaran yang dipilih</p>
                                   <p>Pilih komponen pembayaran terlebih dahulu</p>
                                 </div>
                               ) 
@@ -304,8 +301,8 @@ const ActivePayment = () => {
                         </div>
                       </CardFooter>
                       {apiActivePayment ? (
-                        <CardFooter className="justify-between p-4 rounded-b-lg gap-2 border-b-2">
-                          <Button className="text-xs w-full bg-slate-500 text-white"
+                        <CardFooter className="justify-between p-3 rounded-b-lg gap-2 border-b-2">
+                          <Button className="text-[10px] w-full h-8 bg-slate-500 text-white"
                             onClick={()=>{handleCancel(apiActivePayment.data.order_id)}}
                           >
                           {onClickLoadingCancel ? (
@@ -333,7 +330,7 @@ const ActivePayment = () => {
                                   "CANCEL"
                               )}
                           </Button>
-                          <Button className="text-xs w-full bg-purple-800 text-white"
+                          <Button className="text-[10px] w-full h-8 bg-purple-800 text-white"
                             onClick={()=>{handleCekStatus(apiActivePayment.data.order_id)}}
                           >
                             {onClickLoadingStatus ? (

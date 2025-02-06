@@ -135,8 +135,8 @@ const StatusPayment = ({ orderId }: { orderId: string }) => {
                   transition={{ duration: 0.3, delay: 0.1, ease: 'easeOut' }}
               >
                   <Card className="mt-[-20vh] shadow-md dark:bg-opacity-70">
-                    <CardHeader className="flex items-center border-b-2 pb-3 dark:bg-slate-800 rounded-t-lg">
-                      <CardHeader className={`flex items-center keterangan leading-3 p-4 ${statusTransaction !== "settlement" && statusTransaction !== "failed" ? "border-b-2" : null}`}>
+                    <div className="flex flex-col items-center border-b-2 pb-3 dark:bg-slate-800 rounded-t-lg">
+                      <div className={`flex items-center keterangan leading-3 p-3 ${statusTransaction !== "settlement" && statusTransaction !== "failed" ? null : null}`}>
                         {
                           statusTransaction === '429'
                           ? <IconPaymentLoadingDogy/>
@@ -150,39 +150,39 @@ const StatusPayment = ({ orderId }: { orderId: string }) => {
                           ? <TransactionSkeleton/>
                           : <IconError/>
                         }
-                      </CardHeader>
+                      </div>
                         <div className="text_header flex flex-col items-center text-center leading-0">
                           {
                             statusTransaction === '429'
-                            ? <p className="font-bold text-sm">Tunggu Beberapa Saat</p>
+                            ? <p className="font-bold text-[10px]">Tunggu Beberapa Saat</p>
                             : statusTransaction === 'expire'
-                            ? <p className="font-bold text-sm">Melebihi Batas Waktu</p>
+                            ? <p className="font-bold text-[10px]">Melebihi Batas Waktu</p>
                             : statusTransaction === 'pending'
-                            ? <p className="font-bold text-sm">Pembayaran Aktif</p>
+                            ? <p className="font-bold text-[10px]">Pembayaran Aktif</p>
                             : statusTransaction === 'settlement'
-                            ? <p className="font-bold text-sm">Pembayaran Berhasil</p>
-                            : <p className="font-bold text-sm">{
+                            ? <p className="font-bold text-[10px]">Pembayaran Berhasil</p>
+                            : <p className="font-bold text-[10px]">{
                               messageNow && messageNow === 'Unexpected error occurred in getTransactionStatus' 
                               ? `Not Found` : messageNow
                             }</p>
                           }
                           {
                             statusTransaction === '429'
-                            ? <small className="text-xs">Tunggu beberapa saat untuk melihat status transaksi</small>
+                            ? <small className="text-[9px]">Tunggu beberapa saat untuk melihat status transaksi</small>
                             : statusTransaction === 'expire'
-                            ? <small className="text-xs">Pembayaran gagal karena melebihi batas waktu</small>
+                            ? <small className="text-[9px]">Pembayaran gagal karena melebihi batas waktu</small>
                             : statusTransaction === 'pending'
-                            ? <small className="text-xs">Menunggu dan siap dilakukan pembayaran</small>
+                            ? <small className="text-[9px]">Menunggu dan siap dilakukan pembayaran</small>
                             : statusTransaction === 'settlement'
-                            ? <small className="text-xs">Terimakasih telah melakukan pembayaran</small>
-                            : <small className="text-xs">{
+                            ? <small className="text-[9px]">Terimakasih telah melakukan pembayaran</small>
+                            : <small className="text-[9px]">{
                                 messageNow && messageNow === 'Unexpected error occurred in getTransactionStatus' 
                                 ? `Status transaksi ${orderId} tidak tersedia` : messageNow
                               }</small>
                           }
                         </div>
-                    </CardHeader>
-                    <CardHeader className={`flex items-center keterangan leading-3 p-4 ${
+                    </div>
+                    <CardHeader className={`flex items-center keterangan leading-3 p-3 ${
                       apiTransactionStatus && statusTransaction !== 'pending'  ? null : 'border-b-2'
                     }`}>
                       {
@@ -196,26 +196,26 @@ const StatusPayment = ({ orderId }: { orderId: string }) => {
                     </CardHeader>
                       {
                         apiTransactionStatus && statusTransaction !== '429' && statusTransaction !== '500' && !error && !loading ? (
-                          <CardHeader className={`list p-4
+                          <CardHeader className={`list p-3
                           ${
                             loading || apiTransactionStatus.status == 200
                             ? 'border-b-2 leading-4' : null
                           }
                           `}>
                           <div>
-                            <div className="flex justify-between text-xs">
+                            <div className="flex justify-between text-[10px]">
                                 <p>Kode Transaksi</p>
                                 <p>{apiTransactionStatus.data.kd_trans}</p>
                             </div>
-                            <div className="flex justify-between text-xs">
+                            <div className="flex justify-between text-[10px]">
                                 <p>Order Id</p>
                                 <p>{apiTransactionStatus.data.order_id}</p>
                             </div>
-                            <div className="flex justify-between text-xs">
+                            <div className="flex justify-between text-[10px]">
                                 <p>Nominal</p>
                                 <p>Rp {Number(apiTransactionStatus.data.gross_amount).toLocaleString("id-ID", { minimumFractionDigits: 0 })}</p>
                             </div>
-                            <div className="flex justify-between text-xs">
+                            <div className="flex justify-between text-[10px]">
                               <p>
                                 {
                                   apiTransactionStatus.data.payment_type === 'bank_transfer' ? 'Bank Transfer' : apiTransactionStatus.data.payment_type
@@ -229,7 +229,7 @@ const StatusPayment = ({ orderId }: { orderId: string }) => {
                                 }
                               </p>
                             </div>
-                            <div className="items-center leading-3 text-xs mt-5">
+                            <div className="items-center leading-3 text-[10px] mt-5">
                               {
                                 apiTransactionStatus.data.payment_type === 'bank_transfer'
                                 ? (
@@ -254,7 +254,7 @@ const StatusPayment = ({ orderId }: { orderId: string }) => {
                                         {
                                           item.name === 'generate-qr-code' 
                                           ? (
-                                            <p className="cursor-pointer"
+                                            <p className="cursor-pointer text-[9px]"
                                               onClick={() => {
                                                 setShowQrDialog(true)
                                                 setQrCodeUrl(item.url);
@@ -263,7 +263,7 @@ const StatusPayment = ({ orderId }: { orderId: string }) => {
                                           ) : 
                                           item.name === 'deeplink-redirect' 
                                           ? (
-                                            <p className="cursor-pointer"
+                                            <p className="cursor-pointer text-[9px]"
                                               onClick={() => handleOpenApp(item.url)}
                                             >BUKA APLIKASI GOPAY</p>
                                           ) : null
@@ -271,7 +271,7 @@ const StatusPayment = ({ orderId }: { orderId: string }) => {
                                         {
                                           item.name === 'generate-qr-code' 
                                           ? <QrCode
-                                              className="cursor-pointer w-4"
+                                              className="cursor-pointer w-3"
                                               onClick={() => {
                                                 setShowQrDialog(true)
                                                 setQrCodeUrl(item.url);
@@ -280,7 +280,7 @@ const StatusPayment = ({ orderId }: { orderId: string }) => {
                                           : 
                                           item.name === 'deeplink-redirect' 
                                           ? <Smartphone
-                                              className="cursor-pointer w-4"
+                                              className="cursor-pointer w-3"
                                               onClick={() => handleOpenApp(item.url)}
                                             /> 
                                           : null
@@ -301,7 +301,7 @@ const StatusPayment = ({ orderId }: { orderId: string }) => {
                         )
                       }
                       
-                      <CardFooter className={`p-4 dark:bg-slate-800 border-b-2 ${!apiTransactionStatus ? 'rounded-b-lg': null}`}>
+                      <CardFooter className={`p-3 dark:bg-slate-800 border-b-2 ${!apiTransactionStatus ? 'rounded-b-lg': null}`}>
                         <div className="flex flex-col justify-start text-xs gap-2">
                             <p>STATUS : </p>
                             <div 
@@ -331,8 +331,8 @@ const StatusPayment = ({ orderId }: { orderId: string }) => {
                         </div>
                       </CardFooter>
                       {apiTransactionStatus ? (
-                        <CardFooter className="justify-between p-4 rounded-b-lg gap-2 border-b-2">
-                          <Button className="text-xs w-full bg-purple-800 text-white"
+                        <CardFooter className="justify-between p-3 rounded-b-lg gap-2 border-b-2">
+                          <Button className="text-xs w-full h-8 bg-purple-800 text-white"
                             onClick={()=>{handleCekStatus(orderId)}}
                           >
                             {onClickLoadingStatus ? (

@@ -18,6 +18,7 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import {validateJWT} from "@/lib/jwt";
 import FullscreenButton from "../button-full-screen";
+import Image from "next/image";
 
 export function Login() {
   const { toast } = useToast();
@@ -88,6 +89,11 @@ export function Login() {
   };
 
   return (
+    <>
+    <CardHeader className="items-center">
+      <Image alt="logo" className="block dark:hidden" src={'/web-03.png'} width={120} height={50}/>
+      <Image alt="logo" className="hidden dark:block" src={'/web-02.png'} width={120} height={50}/>
+    </CardHeader>
     <Card className="w-[350px] dark:bg-transparent">
        <form onSubmit={handleVerif}>
         <CardHeader>
@@ -95,7 +101,7 @@ export function Login() {
           <CardDescription>Place your credential here.</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid w-full items-center gap-4">
+          <div className="grid w-full gap-4">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="nis">Username / NIS</Label>
               <Input
@@ -109,11 +115,11 @@ export function Login() {
             </div>
           </div>
         </CardContent>
-        <CardFooter className="flex gap-2 justify-end">
+        <CardFooter className="flex gap-3 justify-end">
           <FullscreenButton/>
           <Button
             type="submit" 
-            className="flex cursor-pointer hover:scale-125 z-50"
+            className="flex cursor-pointer hover:scale-100 z-50"
             disabled={isLoading}
           >
             {isLoading ? "Loading..." : "Submit"}
@@ -121,5 +127,6 @@ export function Login() {
         </CardFooter>
       </form>
     </Card>
+    </>
   )
 }

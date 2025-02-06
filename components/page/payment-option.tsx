@@ -252,41 +252,41 @@ const PaymentOption = () => {
                         transition={{ duration: 0.3, delay: 0.1, ease: 'easeOut' }}
                     >
                         <Card className="mt-[-20vh] shadow-md dark:bg-opacity-70">
-                            <CardHeader className="flex items-center border-b-2 pb-3 dark:bg-slate-800 rounded-t-lg">
+                            <CardHeader className="flex items-center border-b-2 pb-2 dark:bg-slate-800 rounded-t-lg">
                                 <IconPaymentAvailable />
                                 <div className="text_header flex flex-col items-center text-center leading-0">
-                                    <p className="font-bold text-sm">Lakukan Pembayaran</p>
-                                    <small className="text-xs">Pastikan daftar pembayaran telah sesuai</small>
+                                    <p className="font-bold text-[10px]">Lakukan Pembayaran</p>
+                                    <small className="text-[9px]">Pastikan daftar pembayaran telah sesuai</small>
                                 </div>
                             </CardHeader>
-                            <CardHeader className="keterangan leading-3 p-4 border-b-2">
-                                <div className="flex justify-between text-[10px]">
+                            <CardHeader className="keterangan leading-[10px] p-3 border-b-2">
+                                <div className="flex justify-between text-[9px]">
                                     <p>Administrasi</p>
                                     <p>Rp 5.000</p>
                                 </div>
-                                <div className="flex justify-between text-[10px]">
+                                <div className="flex justify-between text-[9px]">
                                     <p>Payment</p>
                                     <p>{`Total: Rp ${finalTotalNominal.toLocaleString()}`}</p>
                                 </div>
-                                <div className="flex justify-between text-[10px]">
+                                <div className="flex justify-between text-[9px]">
                                     <p>Component</p>
                                     <p>{shareDataPaymentOption?.selectedComponents.length} Component</p>
                                 </div>
                             </CardHeader>
-                            <CardHeader className="list leading-3 p-4 border-b-2">
+                            <CardHeader className="list leading-[10px] p-3 border-b-2">
                                 {shareDataPaymentOption?.selectedComponents.map((item, index) => (
-                                    <div key={index} className="flex justify-between text-[10px]">
+                                    <div key={index} className="flex justify-between text-[9px]">
                                         <p>{item.nama_komponen}</p>
                                         <p>Rp {item.nominal_harus_dibayar.toLocaleString()}</p>
                                     </div>
                                 ))}
                             </CardHeader>
-                            <CardTitle className="p-4">
-                                <p className="text-[10px] font-thin mb-2">Choose Payment Option</p>
-                                <p className="text-[10px]">Bank Transfer VA / E Wallet</p>
+                            <CardTitle className="p-3 leading-[5px]">
+                                <p className="text-[9px] font-thin mb-2">Choose Payment Option</p>
+                                <p className="text-[9px]">Bank Transfer VA / E Wallet</p>
                             </CardTitle>
                             <AlertDialog>
-                                <CardContent className="flex flex-row justify-between gap-2 pl-4 mb-0 pb-2">
+                                <CardContent className="flex flex-row justify-between gap-2 pl-3 mb-0 pb-2">
                                     {(["bri", "bni", "mandiri"] as Array<keyof typeof paymentDetails>).map((method) => (
                                         <AlertDialogTrigger
                                             asChild
@@ -301,7 +301,7 @@ const PaymentOption = () => {
                                         </AlertDialogTrigger>
                                     ))}
                                 </CardContent>
-                                <CardContent className="flex flex-row pl-4 gap-2">
+                                <CardContent className="flex flex-row pl-3 gap-2">
                                     {(["permata"] as Array<keyof typeof paymentDetails>).map((method) => (
                                         <AlertDialogTrigger
                                             asChild
