@@ -187,25 +187,18 @@ const Home = () => {
         transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
         className="h-52 w-full flex flex-col items-center justify-center z-10"
       >
-        <h5 className="text-center font-bold bg-clip-text bg-gradient-to-br
-          dark:text-transparent 
-          dark:from-white 
-          dark:via-neutral-200 
-          dark:to-black/[0.6]
-           ">
-          Monthly Payment
-        </h5>
-        <p className="text-sm text-center font-bold bg-clip-text bg-gradient-to-br 
+        <p className="text-[10px] text-center font-bold bg-clip-text bg-gradient-to-br 
           dark:text-transparent  
           dark:from-white 
           dark:via-neutral-200 
           dark:to-black/[0.6] 
           ">
+            Payment Administration <br />
           {
             currentMonthYear
           }
         </p>
-        <div className="flex text-4xl mt-4 bg-clip-text bg-gradient-to-br 
+        <div className="flex text-3xl mt-4 bg-clip-text bg-gradient-to-br 
           dark:text-white 
           dark:from-white 
           dark:via-neutral-200 
@@ -235,8 +228,8 @@ const Home = () => {
         {/* card name */}
         <Card className="flex z-50 dark:bg-slate-800 dark:bg-opacity-70 ">
           <CardHeader className="pt-2 pb-2">
-            <CardTitle className="text-sm">{namaSiswa}</CardTitle>
-            <CardDescription>{kdRombel}</CardDescription>
+            <CardTitle className="text-xs">{namaSiswa}</CardTitle>
+            <CardDescription className='text-xs'>{kdRombel}</CardDescription>
           </CardHeader>
         </Card>
         {/* card payment component */}
