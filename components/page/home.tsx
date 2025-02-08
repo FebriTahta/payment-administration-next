@@ -24,6 +24,7 @@ const main_menu1 = [
   { menu_icon: BookType, menu_text: 'USP', komponen: 'usp',menu_icon_text: 'BookType' },
   { menu_icon: NotebookPen, menu_text: 'UAS', komponen: 'uas',menu_icon_text: 'NotebookPen' },
   { menu_icon: LibraryBig, menu_text: 'LKS', komponen: 'lks',menu_icon_text: 'LibraryBig' },
+ 
 ];
 
 const main_menu2 = [
@@ -233,7 +234,7 @@ const Home = () => {
           </CardHeader>
         </Card>
         {/* card payment component */}
-        <Card className="z-20 pr-7 pl-7 mt-[-40px] w-full h-screen rounded-[30px] dark:bg-slate-900 dark:bg-opacity-70">
+        <Card className="z-20 pr-9 pl-9 mt-[-40px] w-full h-screen rounded-[30px] dark:bg-slate-900 dark:bg-opacity-70">
           <CardHeader className='mt-7 mb-[-7px]'>
             <CardTitle className="text-[12px]">Komponen Pembayaran</CardTitle>
           </CardHeader>

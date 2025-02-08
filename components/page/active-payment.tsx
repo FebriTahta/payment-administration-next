@@ -282,8 +282,6 @@ const ActivePayment = () => {
                                 statusTransaction === 'pending' 
                                 || statusTransaction === 'accept' 
                                 || statusTransaction === 'settlement'
-                                  ? 'text-green-900'
-                                  : 'text-red-900'
                               }`}
                             >{!apiActivePayment 
                               ? (

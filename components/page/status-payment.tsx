@@ -309,8 +309,6 @@ const StatusPayment = ({ orderId }: { orderId: string }) => {
                                 statusTransaction === 'pending' 
                                 || statusTransaction === 'accept' 
                                 || statusTransaction === 'settlement'
-                                  ? 'text-green-500'
-                                  : 'text-red-500'
                               }`}
                             >
                               {
