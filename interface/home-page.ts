@@ -32,6 +32,7 @@ export interface AuthPayload {
     NAMASISWA: string | undefined;
     exp: number;
     KDROMBEL: string;
+    TAHUN_AJARAN:string;
     data: string;
 }
   

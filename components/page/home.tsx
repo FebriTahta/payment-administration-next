@@ -39,6 +39,7 @@ const Home = () => {
   const [namaSiswa, setNamaSiswa] = useState('');
   const [kdRombel, setKdRombel] = useState('');
   const [nis, setNis] = useState('');
+  const [tahunAjaran, setTahunAjaran] = useState('');
   const [monthlyPayment, setMonthlyPayment] = useState<MonthlyRecapPaymentResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -57,10 +58,13 @@ const Home = () => {
       try {
         const statusToken = checkTokenActive();
         if (statusToken.status == true) {
-          setNamaSiswa(statusToken.data?.NAMASISWA || "-");
-          setKdRombel(statusToken.data?.KDROMBEL || "-");
-          setNis(statusToken.data?.data || "-");
-          setToken(statusToken.cookieToken || "-");
+
+          setNamaSiswa(statusToken.data?.NAMASISWA || "-"); // nama
+          setKdRombel(statusToken.data?.KDROMBEL || "-"); // kelas
+          setNis(statusToken.data?.data || "-"); // nis
+          setTahunAjaran(statusToken.data?.TAHUN_AJARAN || "-"); // tahun ajaran
+          setToken(statusToken.cookieToken || "-"); // token
+
           try {
             const monthlyPaymentRes = await monthlyRecapPayment(statusToken.data?.data, statusToken.cookieToken);
             setMonthlyPayment(monthlyPaymentRes);
@@ -68,6 +72,7 @@ const Home = () => {
             const errorMessage = error instanceof Error ? error.message : 'Unknown error';
             setError(`${errorMessage}`);
           }
+
         } else {
           setError('No auth token found.');
         }
@@ -230,7 +235,7 @@ const Home = () => {
         <Card className="flex z-50 dark:bg-slate-800 dark:bg-opacity-70 ">
           <CardHeader className="pt-2 pb-2">
             <CardTitle className="text-xs">{namaSiswa}</CardTitle>
-            <CardDescription className='text-xs'>{kdRombel}</CardDescription>
+            <CardDescription className='text-xs'>{kdRombel} {tahunAjaran}</CardDescription>
           </CardHeader>
         </Card>
         {/* card payment component */}
@@ -254,7 +259,8 @@ const Home = () => {
                           kd_rombel: btoa(kdRombel),
                           payment_type: btoa(encodeURIComponent(item.komponen.toLowerCase())), // komponen
                           i_pay: item.menu_icon_text, // icon
-                          token: btoa(token)
+                          token: btoa(token),
+                          tahun_ajaran: btoa(tahunAjaran)
                         },
                       }}>
                       {
@@ -280,7 +286,8 @@ const Home = () => {
                             kd_rombel: btoa(kdRombel),
                             payment_type: btoa(encodeURIComponent(item.komponen.toLowerCase())), // komponen
                             i_pay: item.menu_icon_text, // icon
-                            token: btoa(token)
+                            token: btoa(token),
+                            tahun_ajaran: btoa(tahunAjaran)
                           },
                         }}>
                         {

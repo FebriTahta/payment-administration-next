@@ -29,7 +29,8 @@ const PaymentComponentList = ({props}: AvailabelPaymentComponentsPageProps) => {
           props.nis,
           props.kd_rombel,
           props.payment_type,
-          props.token
+          props.token,
+          props.tahun_ajaran
         );
         setPaymentList(availablePayments);
         setLoading(false); // Pastikan loading selesai
@@ -40,7 +41,7 @@ const PaymentComponentList = ({props}: AvailabelPaymentComponentsPageProps) => {
     };
     fetchData();
     
-  }, [props.nis, props.kd_rombel, props.payment_type, props.token]); // Tambahkan semua dependensi
+  }, [props.nis, props.kd_rombel, props.payment_type, props.token, props.tahun_ajaran]); // Tambahkan semua dependensi
 
   const MapToDetailContext = (item: ComponentList) => {
     return {

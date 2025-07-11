@@ -1,12 +1,14 @@
 import { AvailablePaymentComponentsResponse } from "@/interface/payment-component-list-page";
 import { baseUrl } from "@/lib/url";
   
-export const availablePaymentComponents = async (nis: string, kd_rombel: string, komponen: string | null , token: string): Promise<AvailablePaymentComponentsResponse> => {
+export const availablePaymentComponents = async (nis: string, kd_rombel: string, komponen: string | null , token: string, tahun_ajaran: string): Promise<AvailablePaymentComponentsResponse> => {
   try {
     const url = baseUrl();
+    // Encode tahun_ajaran dengan btoa
+    const encodedTahunAjaran = btoa(tahun_ajaran);
     const endpoint = komponen && komponen.trim() !== ""
-      ? `${url}/available-payment-comppnent/${nis}/${kd_rombel}/${komponen}`
-      : `${url}/available-payment-comppnent/${nis}/${kd_rombel}`;
+      ? `${url}/available-payment-comppnent/${nis}/${kd_rombel}/${encodedTahunAjaran}/${komponen}`
+      : `${url}/available-payment-comppnent/${nis}/${kd_rombel}/${encodedTahunAjaran}`;
 
     const response = await fetch(endpoint, {
       method: 'GET',

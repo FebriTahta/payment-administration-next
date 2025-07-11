@@ -37,6 +37,7 @@ interface AuthPayload {
   exp: number;
   KDROMBEL: string;
   data: string;
+  TAHUN_AJARAN: string; // tambahkan ini
 }
 
 type AuthFormat = {
@@ -83,7 +84,8 @@ export function ButtonAddPaymentComponent({
           auth.data.data,
           auth.data.KDROMBEL,
           null,
-          auth.cookieToken
+          auth.cookieToken,
+          auth.data.TAHUN_AJARAN
         );
 
         // Mapping response data agar sesuai dengan tipe Component

@@ -7,6 +7,7 @@ interface SearchParams {
   nis?: string;
   kd_rombel?: string;
   token?: string;
+  tahun_ajaran?: string;
 }
 
 const fetchPaymentDetails = async (searchParams: SearchParams) => {
@@ -15,6 +16,7 @@ const fetchPaymentDetails = async (searchParams: SearchParams) => {
   const nis = decodeURIComponent(atob(searchParams.nis || '-'));
   const kd_rombel = decodeURIComponent(atob(searchParams.kd_rombel || '-'));
   const token = decodeURIComponent(atob(searchParams.token || '-'));
+  const tahun_ajaran = decodeURIComponent(atob(searchParams.tahun_ajaran || '-'));
 
   return {
     title: `Tipe Pembayaran : ${payment_type.toUpperCase()}`,
@@ -24,6 +26,7 @@ const fetchPaymentDetails = async (searchParams: SearchParams) => {
     payment_type,
     i_pay,
     token,
+    tahun_ajaran
   };
 };
 
@@ -39,6 +42,7 @@ export default async function Page({ searchParams }: PageProps) {
     nis: resolvedSearchParams.nis as string | undefined,
     kd_rombel: resolvedSearchParams.kd_rombel as string | undefined,
     token: resolvedSearchParams.token as string | undefined,
+    tahun_ajaran: resolvedSearchParams.tahun_ajaran as string | undefined,
   };
 
   const props = await fetchPaymentDetails(typedSearchParams);

@@ -21,7 +21,7 @@ export default function FullscreenButton() {
     <Button 
         type="button"
         onClick={toggleFullscreen} 
-        className="flex rounded-lg shadow-md">
+        className="flex rounded-lg shadow-md w-[65px]">
         {
             isFullscreen
             ? <ScreenShareOff/>

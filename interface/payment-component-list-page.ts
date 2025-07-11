@@ -29,9 +29,9 @@ interface PaymentCore {
     sisa: number;
     status: string;
     details: ComponentDetail[];
-    kd_trans?: string; // Tambahkan properti ini
-    tanggal_bayar?: string; // Tambahkan properti ini
-    metode_bayar?: string; // Tambahkan properti ini
+    kd_trans?: string;
+    tanggal_bayar?: string;
+    metode_bayar?: string;
   }
   
   export interface AvailablePaymentComponentsResponse {
@@ -51,6 +51,7 @@ interface PaymentCore {
       payment_type: string;
       i_pay: string;
       token: string;
+      tahun_ajaran: string;
     };
   }
   

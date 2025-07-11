@@ -16,6 +16,7 @@ interface AuthPayload {
     NAMASISWA: string | undefined;
     exp: number;
     KDROMBEL: string;
+    TAHUN_AJARAN: string; // Ganti ke huruf kapital
     data: string;
 }
 
