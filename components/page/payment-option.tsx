@@ -39,6 +39,7 @@ interface CustomerDetailsPayload {
     nis: string;
     name: string;
     kdrombel: string;
+    tahun_ajaran: string;
 }
 
 interface TransactionPayload {
@@ -174,6 +175,7 @@ const PaymentOption = () => {
                 nis: shareDataPaymentOption?.auth?.data?.data || "",
                 name: shareDataPaymentOption?.auth?.data?.NAMASISWA || "",
                 kdrombel: shareDataPaymentOption?.auth?.data?.KDROMBEL || "",
+                tahun_ajaran: shareDataPaymentOption?.auth?.data?.TAHUN_AJARAN || "",
             },
             paymentType: isBankTransfer ? "bank_transfer" : "gopay", // Set paymentType sesuai metode pembayaran
         };

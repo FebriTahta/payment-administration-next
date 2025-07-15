@@ -7,6 +7,7 @@ interface AuthPayload {
     exp: number;
     KDROMBEL: string;
     data: string;
+    TAHUN_AJARAN: string;
 }
 
 interface AuthFormat {
@@ -40,7 +41,14 @@ export const PaymentOptionProvider = ({ children }: { children: ReactNode }) => 
         if (typeof window !== "undefined") {
             const storedData = localStorage.getItem("paymentOption");
             if (storedData) {
-                setSharedDataPaymentOption(JSON.parse(storedData));
+                const parsedData = JSON.parse(storedData);
+                console.log("[PaymentOptionContext] Loaded paymentOption from localStorage:", parsedData);
+                if (parsedData?.auth?.data?.TAHUN_AJARAN) {
+                    console.log("[PaymentOptionContext] TAHUN_AJARAN:", parsedData.auth.data.TAHUN_AJARAN);
+                } else {
+                    console.warn("[PaymentOptionContext] TAHUN_AJARAN is missing in paymentOption data!");
+                }
+                setSharedDataPaymentOption(parsedData);
             }
         }
     }, []);
